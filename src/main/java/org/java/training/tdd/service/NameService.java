@@ -1,6 +1,7 @@
 package org.java.training.tdd.service;
 
 import org.java.training.tdd.model.NameModel;
+import org.java.training.tdd.model.StudentNames;
 import org.java.training.tdd.repository.NameDAO;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,6 +13,10 @@ public class NameService {
 
 	public NameService(NameDAO dao) {
 		this.dao = dao;
+	}
+
+	public NameService() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Object getNameById() {
@@ -29,9 +34,9 @@ public class NameService {
 		// String nameAsString=(String) dao.getNameFromTableAsString();
 		// System.out.println(nameAsString+"$$$$$");
 		if (idValue != 0) {
-			NameModel name = dao.getNameFromTableAsBean(idValue);
+			StudentNames name = dao.getNameFromTableAsBean(idValue);
 			if (name != null) {
-				obj.put("name", "sanjay");
+				obj.put("name", name.getFirstName());
 				obj.put("status", "success");
 			} else {
 				obj.put("name", "");
