@@ -35,6 +35,6 @@ class NameServiceTest {
 		JSONObject obj = new JSONObject();
 		obj.put("name", "sanjay");
 		obj.put("status", "success");
-		assertThat(nameService.getNameFromTable()).isEqualTo(obj);
+		assertThat(nameService.resultByJSON()).isEqualTo(obj);
 	}
 }
