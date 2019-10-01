@@ -1,24 +1,35 @@
 package org.java.training.tdd.repository;
 
-import org.java.training.tdd.model.NameModel;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.java.training.tdd.config.HibernateUtil;
 import org.java.training.tdd.model.StudentNames;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 public class NameDAO {
 
 	public StudentNames getNameFromTableAsBean(Integer id) {
-	System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("!!!!!!@@@@@@@@@@");
+		System.out.println(HibernateUtil.getSessionFactory()+"%%%%%%%%%");
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		CriteriaBuilder cb = session.getCriteriaBuilder();
+		CriteriaQuery<StudentNames> cr = cb.createQuery(StudentNames.class);
+		Root<StudentNames> root = cr.from(StudentNames.class);
+		cr.select(root);
+		 
+		Query<StudentNames> query = session.createQuery(cr);
+		StudentNames results = query.getSingleResult();
+		return results;
 	}
 
 	public Object getNameFromTableAsString() {
-		System.out.println("!!!!!!@@@@@@@@@@@@@@@@@@@@!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		return null;
 	}
 
 	public Integer getDocumentId() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

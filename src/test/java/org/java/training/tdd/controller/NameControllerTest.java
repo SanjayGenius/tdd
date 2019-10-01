@@ -26,7 +26,9 @@ class NameControllerTest {
 	void getName() throws Exception {
 		String name = "Sanjay";
 		when(service.getNameById()).thenReturn("Sanjay");
-		mockMvc.perform(get("/names/{name}", name)).andExpect(status().isOk()).andExpect(content().string("Sanjay"));
+		mockMvc.perform(get("/names/{name}", name))
+		.andExpect(status().isOk())
+		.andExpect(content().string("Sanjay"));
 	}
 
 	@Test
