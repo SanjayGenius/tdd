@@ -7,21 +7,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.java.training.tdd.service.NameService;
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-
-@WebMvcTest(NameController.class)
+@WebMvcTest
+@ExtendWith(SpringExtension.class) //annotation to tell JUnit 5 to enable Spring support (2.1 not needed)
 class NameControllerTest {
+	
 	@Autowired
 	private MockMvc mockMvc;
+	
 	@MockBean
 	private NameService service;
-
+	
 	@Test
 	void getName() throws Exception {
 		String name = "Sanjay";
@@ -51,6 +54,7 @@ class NameControllerTest {
 				.andExpect(content().json(obj.toString()))
 				.andExpect(jsonPath("$.status").value("success"));
 	}
+	@SuppressWarnings("unchecked")
 	@Test
 	void getJSONFormatNull() throws Exception {
 		JSONObject obj = new JSONObject();

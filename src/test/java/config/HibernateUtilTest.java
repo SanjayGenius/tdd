@@ -1,4 +1,4 @@
-package org.java.training.tdd.config;
+package config;
 
 
 import org.hibernate.SessionFactory;
@@ -14,7 +14,7 @@ import org.java.training.tdd.model.StudentNames;
  * current thread of execution.  Follows the Thread Local Session
  * pattern, see {@link http://hibernate.org/42.html }.
  */
-public class HibernateUtil {
+public class HibernateUtilTest {
     private static StandardServiceRegistry registry;
     private static SessionFactory sessionFactory;
     
@@ -24,7 +24,7 @@ public class HibernateUtil {
                 // Create registry
                 registry = new StandardServiceRegistryBuilder().configure().build();
                 // Create MetadataSources
-                MetadataSources sources = new MetadataSources(registry).addAnnotatedClass(StudentNames.class);
+                MetadataSources sources = new MetadataSources(registry).addAnnotatedClass(StudentNames.class);;
                 // Create Metadata
                 Metadata metadata = sources.getMetadataBuilder().build();
                 // Create SessionFactory

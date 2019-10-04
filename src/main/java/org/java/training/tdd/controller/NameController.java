@@ -3,16 +3,17 @@ package org.java.training.tdd.controller;
 
 import org.java.training.tdd.service.NameService;
 import org.json.JSONException;
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class NameController {
-	@Autowired
 	private NameService nameService;
+	public NameController(NameService nameService) {
+        this.nameService = nameService;
+    }
 
 	@GetMapping(value = "/names/getJSON", produces = "application/json")
 	public String getJSONDetails() throws JSONException {
