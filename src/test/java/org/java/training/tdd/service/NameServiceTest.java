@@ -35,12 +35,12 @@ class NameServiceTest {
 		System.out.println(name);
 		when(nDAO.getDocumentId()).thenReturn(1);
 		when(nDAO.getNameFromTableAsBean(1)).thenReturn(name);
-		// when(dao.getNameFromTableAsString()).thenReturn("SUCCESS");
-		// assertThat(dao.getNameFromTableAsBean()).isEqualTo( name);
-		// when(name.getName()).thenReturn("sanjay");
 		JSONObject obj = new JSONObject();
 		obj.put("name", "Sanjay");
 		obj.put("status", "success");
 		assertThat(itemService.resultByJSON()).isEqualTo(obj);
 	}
+			// when(dao.getNameFromTableAsString()).thenReturn("SUCCESS");
+			// assertThat(dao.getNameFromTableAsBean()).isEqualTo( name);
+			// when(name.getName()).thenReturn("sanjay");
 }

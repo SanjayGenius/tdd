@@ -42,6 +42,7 @@ class NameControllerTest {
 				.andExpect(content().string("EMPTY"));
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	void getJSONFormat() throws Exception {
 		JSONObject obj = new JSONObject();

@@ -2,29 +2,32 @@
 package org.java.training.tdd.controller;
 
 import org.java.training.tdd.service.NameService;
-import org.json.JSONException;
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class NameController {
+	@Autowired(required=false)
 	private NameService nameService;
-	public NameController(NameService nameService) {
-        this.nameService = nameService;
-    }
-
+	@SuppressWarnings("unchecked")
 	@GetMapping(value = "/names/getJSON", produces = "application/json")
-	public String getJSONDetails() throws JSONException {
+	public JSONObject getJSONDetails() {
 		JSONObject obj = new JSONObject();
-		obj = (JSONObject) nameService.resultByJSON();
+		try {
+		obj = nameService.resultByJSON();
 		if (obj == null) {
 			obj = new JSONObject();
 			obj.put("status", "failure");
 			obj.put("data", "Sorry Unable to process Please contact admin");
 		}
-		return obj.toString();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return obj;
 	}
 
 	@GetMapping("/names/{name}")

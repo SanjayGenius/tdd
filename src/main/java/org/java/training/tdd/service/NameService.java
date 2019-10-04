@@ -5,9 +5,9 @@ import org.java.training.tdd.repository.NameDAO;
 import org.json.JSONException;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class NameService {
 	@Autowired
 	private NameDAO dao;
