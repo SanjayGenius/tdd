@@ -2,7 +2,6 @@ package org.java.training.tdd.service;
 
 import org.java.training.tdd.model.StudentNames;
 import org.java.training.tdd.repository.NameDAO;
-import org.json.JSONException;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,7 +17,7 @@ public class NameService {
 
 
 	@SuppressWarnings("unchecked")
-	public JSONObject resultByJSON() throws JSONException {
+	public JSONObject resultByJSON() {
 		JSONObject obj = new JSONObject();
 		Integer idValue = dao.getDocumentId();
 		if (idValue != 0) {
